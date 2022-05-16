@@ -1,0 +1,22 @@
+package {package};
+
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * {author}
+ */
+public interface BaseService<T extends BaseEntity> {
+
+    void save(T model);
+
+    void update(T model);
+
+    Optional<T> getByPrimaryKey(long id);
+
+    Optional<T> selectOnByExample(Example example);
+
+    List<T> selectByExample(Example example);
+}

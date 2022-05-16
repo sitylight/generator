@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai_sec
+    username: ai_sec
+    password: p
+
+parameter:
+  tables: tbl_meeting,tbl_meeting_text,tbl_meeting_attend,tbl_book_record,tbl_send_out,tbl_receive,tbl_receive_propose,tbl_receive_text,tbl_group_receive,tbl_group_receive_propose,tbl_group_receive_text
+  author: "@author derrick"
+  output: true
+
+structure:
+  package-name: com.ai.sec
+  base-package: base
+  entity-package: domain.entity
+  repository-package: repository
+  service-package: service
+  mapper-package: mapper
+  impl-package: impl
+  entity-suffix: Entity
+  repository-suffix: Repository
+  repository-impl-suffix: RepositoryImpl
+  service-suffix: Service
+  service-impl-suffix: ServiceImpl
+  mapper-suffix: Mapper
+  table-prefix: tbl_
+  output-path: /Users/derrick/cityline/generator/out
+  compile-out: ${structure.output-path}/classes
+

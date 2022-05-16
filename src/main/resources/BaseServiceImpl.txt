@@ -1,0 +1,44 @@
+package {package};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * {author}
+ */
+public abstract class BaseServiceImpl<T extends BaseEntity, R extends BaseRepository<T>> implements BaseService<T> {
+
+    @Autowired
+    protected R repository;
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void save(T model) {
+        repository.save(model);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void update(T model) {
+        repository.update(model);
+    }
+
+    @Override
+    public Optional<T> getByPrimaryKey(long id) {
+        return Optional.ofNullable(repository.queryByPrimaryKey(id));
+    }
+
+    @Override
+    public Optional<T> selectOnByExample(Example example) {
+        return Optional.ofNullable(repository.queryOneByExample(example));
+    }
+
+    @Override
+    public List<T> selectByExample(Example example) {
+        return repository.queryByExample(example);
+    }
+}

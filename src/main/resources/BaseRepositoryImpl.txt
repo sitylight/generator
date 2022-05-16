@@ -1,0 +1,46 @@
+package {package};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+
+/**
+ * {author}
+ */
+public abstract class BaseRepositoryImpl <T extends BaseEntity, M extends Mapper<T>> implements BaseRepository<T> {
+
+    @Autowired
+    protected M mapper;
+
+    @Override
+    public int save(T model) {
+        return mapper.insert(model);
+    }
+
+    @Override
+    public int update(T model) {
+        return mapper.updateByPrimaryKey(model);
+    }
+
+    @Override
+    public T queryByPrimaryKey(long id) {
+        return mapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public T queryOneByExample(Example example) {
+        return mapper.selectOneByExample(example);
+    }
+
+    @Override
+    public List<T> queryByExample(Example example) {
+        return mapper.selectByExample(example);
+    }
+
+    @Override
+    public int queryCount(Example example) {
+        return mapper.selectCountByExample(example);
+    }
+}

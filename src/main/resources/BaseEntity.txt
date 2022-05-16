@@ -1,0 +1,19 @@
+package {package};
+
+import lombok.Data;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+/**
+ * {author}
+ */
+@Data
+public class BaseEntity implements Serializable {
+    private static final long serialVersionUID = -8675956550372252632L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "select id_generator()")
+    private Long id;
+}

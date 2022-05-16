@@ -1,0 +1,22 @@
+package {package};
+
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+
+/**
+ * {author}
+ */
+public interface BaseRepository<T extends BaseEntity> {
+    int save(T model);
+
+    int update(T model);
+
+    T queryByPrimaryKey(long id);
+
+    T queryOneByExample(Example example);
+
+    List<T> queryByExample(Example example);
+
+    int queryCount(Example example);
+}
